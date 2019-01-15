@@ -1,4 +1,4 @@
-const WORK_DIR = process.env['TMPDIR'] + `/authcode-fetcher-${Date.now()}`;
+const WORK_DIR = `/authcode-fetcher-${Date.now()}`;
 
 const puppeteer = require('puppeteer');
 const shell = require('shelljs');
@@ -20,7 +20,7 @@ function updatePackage(newAuthCode) {
 	shell.cd(WORK_DIR);
 
 	// pull package
-	shell.exec('git clone https://github.com/simplyGits/magisterjs-authcode.git ./package');
+	shell.exec('git clone git@github.com:simplyGits/magisterjs-authcode.git ./package');
 	shell.cd('./package');
 
 	// update code.json
