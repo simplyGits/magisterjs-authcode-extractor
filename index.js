@@ -51,11 +51,11 @@ function updatePackage(newAuthCode) {
 	const data = JSON.parse(request.postData());
 
 	const newAuthCode = data.authCode;
-	console.log('Retrieved authcode', newAuthCode);
+	console.log('retrieved authcode', newAuthCode);
+
+	await browser.close();
 
 	if (newAuthCode !== oldAuthCode) {
 		await updatePackage(newAuthCode);
 	}
-
-	await browser.close();
 })();

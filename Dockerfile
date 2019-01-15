@@ -7,7 +7,7 @@ RUN apt-get update \
 
 # install dependencies
 COPY package*.json ./
-RUN npm install --only=production
+RUN npm ci --only=production
 
 # copy source code
 COPY . .
