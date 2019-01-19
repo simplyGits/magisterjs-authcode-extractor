@@ -57,6 +57,6 @@ function updatePackage(newAuthCode) {
 	await browser.close();
 
 	if (newAuthCode !== oldAuthCode) {
-		await updatePackage(newAuthCode);
+		updatePackage(newAuthCode);
 	}
 })();
