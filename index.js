@@ -40,8 +40,9 @@ function updatePackage(newAuthCode) {
 	shell.exec('npm pub --access public');
 }
 
-(async () => {
-	const browser = await puppeteer.launch({
+let browser;
+async function main() {
+	browser = await puppeteer.launch({
 		executablePath: 'google-chrome-unstable',
 		args: [ '--no-sandbox', '--disable-setuid-sandbox' ],
 	});
@@ -54,9 +55,12 @@ function updatePackage(newAuthCode) {
 	const newAuthCode = data.authCode;
 	console.log('retrieved authcode', newAuthCode);
 
-	await browser.close();
-
 	if (newAuthCode !== oldAuthCode) {
 		updatePackage(newAuthCode);
 	}
-})();
+}
+
+main()
+	.catch(console.error)
+	.finally(() => browser.close())
+	.catch(console.error);
